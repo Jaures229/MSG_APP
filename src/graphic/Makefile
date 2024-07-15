@@ -1,4 +1,6 @@
-SRC	=	main.cpp
+SRC	=	main.cpp	\
+		../loader/loader.cpp	\
+		../Client/client.cpp
 
 OBJ	=	${SRC}
 

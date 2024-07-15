@@ -8,4 +8,12 @@
     #include <SFML/Audio.hpp>
     #include <SFML/System.hpp>
     #include <SFML/Window.hpp>
+    class Graphic
+    {
+        private:
+            sf::RenderWindow window;
+        public:
+            Graphic(/* args */);
+            ~Graphic();
+    };
 #endif /* !GRAPHIC_HPP_ */
