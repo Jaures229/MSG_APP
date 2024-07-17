@@ -43,12 +43,24 @@
             int client_socket;
             fd_set read_fds;
             std::vector<Server_client> clients;
+
+            int server_port;
+            std::string _ip;
+            sf::RenderWindow windows;
+            int _height;
+            int _widht;
+            void create_windows(int height, int widht);
+
+            sf::Event event;
         public:
             Server(/* args */);
             ~Server();
+            void launch_server(std::string ip, int port);
             void create_server_socket();
             void bind_server(int port, std::string ip);
             void listen_server();
             void server_select();
+            void launch();
     };
+
 #endif /* !SERVER_HPP_ */

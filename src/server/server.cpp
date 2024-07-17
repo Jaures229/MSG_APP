@@ -18,6 +18,8 @@ void Server::create_server_socket()
         std::cerr << "Erreur lors de la création du socket serveur" << std::endl;
         exit(84);
     }
+    bind_server(server_port, _ip);
+    listen_server();
 }
 
 void Server::bind_server(int port, std::string ip)
@@ -38,4 +40,12 @@ void Server::listen_server()
         std::cerr << "Erreur lors de l'écoute des connexions" << std::endl;
         exit(84);
     }
+}
+
+void Server::launch_server(std::string ip, int port)
+{
+    _ip = ip;
+    server_port = port;
+    create_server_socket();
+    launch();
 }
