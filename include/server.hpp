@@ -7,10 +7,6 @@
     #include <arpa/inet.h>
     #include <memory>
     #include <vector>
-    #include <SFML/Graphics.hpp>
-    #include <SFML/Audio.hpp>
-    #include <SFML/System.hpp>
-    #include <SFML/Window.hpp>
 
     class Server_client
     {
@@ -21,40 +17,26 @@
             ~Server_client();
     };
 
-    class Server_Render
-    {
-        private:
-            sf::RenderWindow windows;
-            int _height;
-            int _widht;
-            int nb_clients;
-            void create_windows(int height, int widht);
-        public:
-            Server_Render();
-            ~Server_Render();
-            void launch(int port, std::string ip, int height, int widht);
-    };
-
     class Server
     {
         private:
             int server_socket;
             struct sockaddr_in server_address;
             int client_socket;
-            fd_set read_fds;
+            fd_set readfds;
             std::vector<Server_client> clients;
 
             int server_port;
             std::string _ip;
-            sf::RenderWindow windows;
             int _height;
             int _widht;
-            void create_windows(int height, int widht);
-
-            sf::Event event;
+            int max_sd;
+            int max_cl;
+            fd_set all_sockets;
         public:
-            Server(/* args */);
+            Server();
             ~Server();
+            void set_sprite();
             void launch_server(std::string ip, int port);
             void create_server_socket();
             void bind_server(int port, std::string ip);

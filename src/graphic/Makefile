@@ -8,7 +8,7 @@ NAME	=	@Client
 
 all:	${NAME}
 
-SFML = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
+SFML =  -ltgui -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 
 ${NAME}:
 	g++ -o ${NAME} -std=c++20 ${SRC} -O1 -O2 -O3 -g3 $(SFML)

@@ -8,6 +8,11 @@
     #include <SFML/Audio.hpp>
     #include <SFML/System.hpp>
     #include <SFML/Window.hpp>
+    #include <TGUI/TGUI.hpp>
+    #include <TGUI/Core.hpp>
+    #include <TGUI/Backends/SFML.hpp>
+    #include <TGUI/AllWidgets.hpp>
+
     class Graphic
     {
         private:

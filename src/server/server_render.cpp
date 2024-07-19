@@ -1,45 +1,43 @@
 #include "../../include/server.hpp"
+#include "../../include/graphic.hpp"
 
-Server_Render::Server_Render(/* args */)
+void Server::set_sprite()
 {
 
-}
-
-Server_Render::~Server_Render()
-{
-
-}
-
-void Server_Render::launch(int port, std::string ip, int height, int widht)
-{
-
-}
-
-void Server_Render::create_windows(int height, int widht)
-{
-}
-
-void Server::create_windows(int height, int widht)
-{
-    // windows.create(sf::VideoMode(height, widht), "SERVER_RENDER");
 }
 
 void Server::launch()
 {
-    windows.create(sf::VideoMode(1920, 1080), "SERVER_RENDER");
 
-    while (windows.isOpen()) {
-        while (windows.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                windows.close();
-                close(server_socket);
-            }
-        }
+    FD_ZERO(&all_sockets);
+    FD_ZERO(&readfds);
+    FD_SET(server_socket, &all_sockets);
+    max_sd = server_socket;
+
+    while (1) {
         server_select();
     }
 }
 
 void Server::server_select()
 {
-    
+    readfds = all_sockets;
+    int activity = select(max_sd +1, &readfds, NULL, NULL, NULL);
+
+    if (activity == -1) {
+        perror("select");
+        exit(84);
+    }
+    for (int i = 0; i <= max_sd; i++) {
+        if (FD_ISSET(i, &readfds) != 1) {
+            continue;
+            }
+        if (i == server_socket) {
+            // New connection iconming
+            std::cout << "COnnection...\n";
+        } else {
+            std::cout << "Nothing";
+            // read data
+        }
+    }
 }
