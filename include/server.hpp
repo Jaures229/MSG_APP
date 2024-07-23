@@ -38,7 +38,7 @@
             int client_socket;
             fd_set readfds;
             std::vector<Server_client> clients;
-
+            socklen_t server_address_len;
             int server_port;
             std::string _ip;
             int _height;
@@ -47,6 +47,7 @@
             int max_cl;
             fd_set all_sockets;
             void create_new_client();
+            void handle_client_data(int socket);
         public:
             Server();
             ~Server();

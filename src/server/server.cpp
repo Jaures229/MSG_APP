@@ -27,7 +27,7 @@ void Server::bind_server(int port, std::string ip)
     server_address.sin_family = AF_INET;
     server_address.sin_addr.s_addr = inet_addr(ip.c_str());
     server_address.sin_port = htons(port);
-
+    server_address_len = sizeof(server_address);
     if (bind(server_socket, (struct sockaddr*)&server_address, sizeof(server_address)) == -1) {
         std::cerr << "Erreur lors de la liaison du socket" << std::endl;
         exit(84);

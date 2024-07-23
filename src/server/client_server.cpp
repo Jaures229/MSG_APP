@@ -7,5 +7,5 @@ Server_client::Server_client(int socket)
     
 Server_client::~Server_client()
 {
-    close(_socket);
+    //close(_socket);
 }
