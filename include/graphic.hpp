@@ -8,8 +8,8 @@
     #include <SFML/Audio.hpp>
     #include <SFML/System.hpp>
     #include <SFML/Window.hpp>
-    #include "../src/graphic/imgui/imgui.h"
-    #include "../src/graphic/imgui-SFML.h"
+    #include "imgui.h"
+    #include "imgui-SFML.h"
 
     class Graphic
     {
@@ -20,3 +20,5 @@
             ~Graphic();
     };
 #endif /* !GRAPHIC_HPP_ */
+
+

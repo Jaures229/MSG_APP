@@ -15,6 +15,7 @@ ${NAME}:
 clean:
 	rm -f *~
 	rm -f ${NAME}
+	rm *.o
 
 fclean: clean
 

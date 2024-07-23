@@ -42,8 +42,15 @@ void Server::server_select()
     }
 }
 
-
 void Server::create_new_client()
 {
-    int accept = accept(server_socket, NULL, NULL);
+    int acceppt = accept(server_socket, NULL, NULL);
+
+    if (acceppt == -1) {
+        perror("accept failed");
+        //exit(84);
+    } else {
+        Server_client new_client(acceppt);
+        clients.push_back(new_client);
+    }
 }
