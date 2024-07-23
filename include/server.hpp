@@ -1,17 +1,30 @@
 #ifndef SERVER_HPP_
     #define SERVER_HPP_
+    #pragma once
     #include <iostream>
     #include <cstring>
     #include <unistd.h>
-    #include <sys/socket.h>
-    #include <arpa/inet.h>
     #include <memory>
     #include <vector>
+    #include <netinet/in.h>
+    #include <sys/socket.h>
+    #include <arpa/inet.h>
+    #include <sys/socket.h>
+    #include <sys/types.h>
+    #include <fcntl.h>
+    #include <dirent.h>
+    #include <libgen.h>
+    #include <unistd.h>
+    #include <netdb.h>
+    #include <sys/select.h>
+    #include "stdlib.h"
 
     class Server_client
     {
         private:
             int _socket;
+            std::string username, password;
+            int id;
         public:
             Server_client(int socket);
             ~Server_client();
@@ -33,6 +46,7 @@
             int max_sd;
             int max_cl;
             fd_set all_sockets;
+            void create_new_client();
         public:
             Server();
             ~Server();
@@ -43,6 +57,7 @@
             void listen_server();
             void server_select();
             void launch();
+
     };
 
 #endif /* !SERVER_HPP_ */

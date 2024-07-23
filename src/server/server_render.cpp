@@ -1,5 +1,4 @@
 #include "../../include/server.hpp"
-#include "../../include/graphic.hpp"
 
 void Server::set_sprite()
 {
@@ -35,9 +34,16 @@ void Server::server_select()
         if (i == server_socket) {
             // New connection iconming
             std::cout << "COnnection...\n";
+            
         } else {
             std::cout << "Nothing";
             // read data
         }
     }
+}
+
+
+void Server::create_new_client()
+{
+    int accept = accept(server_socket, NULL, NULL);
 }

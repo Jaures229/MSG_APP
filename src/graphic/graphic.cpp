@@ -2,7 +2,7 @@
 
 Graphic::Graphic(/* args */)
 {
-
+    
 }
 
 Graphic::~Graphic()

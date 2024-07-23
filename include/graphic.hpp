@@ -8,10 +8,8 @@
     #include <SFML/Audio.hpp>
     #include <SFML/System.hpp>
     #include <SFML/Window.hpp>
-    #include <TGUI/TGUI.hpp>
-    #include <TGUI/Core.hpp>
-    #include <TGUI/Backends/SFML.hpp>
-    #include <TGUI/AllWidgets.hpp>
+    #include "../src/graphic/imgui/imgui.h"
+    #include "../src/graphic/imgui-SFML.h"
 
     class Graphic
     {
