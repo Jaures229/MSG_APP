@@ -5,7 +5,7 @@ SRC	=	main.cpp	\
 
 OBJ	=	${SRC}
 
-NAME	=	@Server
+NAME	=	@Client
 
 all:	${NAME}
 
@@ -16,7 +16,7 @@ ${NAME}:
 clean:
 	rm -f *~
 	rm -f ${NAME}
-	rm *.o
+	rm -f *.o
 
 fclean: clean
 
