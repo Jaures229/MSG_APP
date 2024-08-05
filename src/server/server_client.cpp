@@ -105,7 +105,7 @@ void Server::login_client(int sock, char *buffer)
     for (int i = 0; i < client_vec.size(); i++) {
         if (client_vec[i].get_id() == sock) {
             for (int j = 0; j < disconnect_client.size(); j++) {
-                if (disconnect_client[j].get_username() == sequences[0]) {
+                if (disconnect_client[j].get_username() == sequences[0] && _server_security.decrypt(disconnect_client[j].get_password(), sequences[1][0]) == sequences[1]) {
                     client_vec[i].set_username(sequences[0]);
                     client_vec[i].set_password(disconnect_client[j].get_password());
                     client_vec[i].set_caption(disconnect_client[j].get_caption());
