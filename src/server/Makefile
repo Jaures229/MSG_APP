@@ -1,6 +1,8 @@
 SRC	=	main.cpp	\
 		server_render.cpp	\
 		server.cpp	\
+		security.cpp	\
+		server_client.cpp	\
 		client_server.cpp
 
 OBJ	=	${SRC}

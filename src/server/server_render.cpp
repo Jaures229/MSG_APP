@@ -51,8 +51,10 @@ void Server::create_new_client()
     }
 
     Server_client new_client(acpt);
+    new_client.set_log(false);
+    new_client.set_id(acpt);
     clients.emplace_back(new_client);
-    
+
     FD_SET(acpt, &all_sockets);
     if (acpt > max_sd) {
         max_sd = acpt;
@@ -66,6 +68,8 @@ void Server::handle_client_data(int client_socket)
     char buffer[1024] = {0};
     int valread = read(client_socket, buffer, sizeof(buffer));
 
+    buffer[valread] = '\0';
+
     if (valread == 0) {
         // Client disconnected
         std::cout << "Client disconnected: " << client_socket << std::endl;
@@ -77,6 +81,31 @@ void Server::handle_client_data(int client_socket)
     } else {
         // Process the received data
         std::cout << "Received data from client " << client_socket << ": " << buffer << std::endl;
+        if (strlen(buffer) != 0)
+            check_protocol(client_socket, buffer);
         // Optionally, send a response back to the client
     }
+}
+
+void Server::check_protocol(int sock, char *buffer)
+{
+    if (check_log(sock, false) == true && strncmp(buffer, "CRT", 3) == 0) {
+        // Handle the creation of the new client with username and password encrypted
+        init_new_client(sock, buffer);
+    } else if (check_log(sock, false) == false && strncmp(buffer, "LGT", 3) == 0) {
+        // Handle the creation of the new client with username and password encrypted
+    } else if (strncmp(buffer, "EXT", 3) == 0) {
+        // client want to quit the server
+        quit_client(sock);
+    }
+}
+
+bool Server::check_log(int sock, bool log)
+{
+    for(int i = 0; i < client_vec.size(); i++) {
+        if (client_vec[i].get_id() == sock && client_vec[i].get_log() == false) {
+            return true;
+        }
+    }
+    return true;
 }
