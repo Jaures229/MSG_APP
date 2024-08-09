@@ -1,6 +1,8 @@
 SRC	=	main.cpp	\
 		loader.cpp	\
 		client.cpp	\
+		graphic.cpp	\
+		protocol.cpp	\
 		../../include/*.cpp
 
 OBJ	=	${SRC}
@@ -17,6 +19,7 @@ clean:
 	rm -f *~
 	rm -f ${NAME}
 	rm -f *.o
+	rm -f *.ini
 
 fclean: clean
 

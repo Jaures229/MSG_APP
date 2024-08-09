@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-
+*.ini
 
 @Client
 @Server

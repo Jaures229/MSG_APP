@@ -2,6 +2,7 @@ SRC	=	main.cpp	\
 		server_render.cpp	\
 		server.cpp	\
 		security.cpp	\
+		channel.cpp	\
 		server_client.cpp	\
 		client_server.cpp
 

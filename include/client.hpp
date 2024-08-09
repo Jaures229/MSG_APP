@@ -15,6 +15,7 @@
     #include <sys/select.h>
     #include "stdlib.h"
     #include <SFML/Network.hpp>
+
     class Client
     {
         private:

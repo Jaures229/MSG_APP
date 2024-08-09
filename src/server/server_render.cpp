@@ -60,7 +60,7 @@ void Server::create_new_client()
         max_sd = acpt;
     }
 
-    std::cout << "New client connected: " << acpt << std::endl; // Log new connection
+    std::cout << "New client connected: " << new_client.get_id() << std::endl; // Log new connection
 }
 
 void Server::handle_client_data(int client_socket)
@@ -92,7 +92,8 @@ void Server::check_protocol(int sock, char *buffer)
     if (check_log(sock, false) == true && strncmp(buffer, "CRT", 3) == 0) {
         // Handle the creation of the new client with username and password encrypted
         init_new_client(sock, buffer);
-    } else if (check_log(sock, false) == false && strncmp(buffer, "LGT", 3) == 0) {
+    } else if (check_log(sock, false) == true && strncmp(buffer, "LGT", 3) == 0) {
+        login_client(sock, buffer);
         // Handle the creation of the new client with username and password encrypted
     } else if (strncmp(buffer, "EXT", 3) == 0) {
         // client want to quit the server
@@ -102,10 +103,10 @@ void Server::check_protocol(int sock, char *buffer)
 
 bool Server::check_log(int sock, bool log)
 {
-    for(int i = 0; i < client_vec.size(); i++) {
-        if (client_vec[i].get_id() == sock && client_vec[i].get_log() == false) {
+    for (int i = 0; i < clients.size(); i++) {
+        if (clients[i].get_id() == sock && clients[i].get_log() == log) {
             return true;
         }
     }
-    return true;
+    return false;
 }
